@@ -1,0 +1,346 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #0d0d0d;
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ─── Hero ─── */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-sphere-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hero-name {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #87ceeb, #4facfe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 60px rgba(79, 172, 254, 0.25);
+}
+
+.hero-title {
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 12px;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.hero-intro {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 16px;
+  max-width: 500px;
+  line-height: 1.8;
+}
+
+/* ─── Sections ─── */
+.section {
+  padding: 80px 10%;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+  color: #87ceeb;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: #4facfe;
+  border-radius: 2px;
+}
+
+/* ─── Skills ─── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.skill-name {
+  min-width: 100px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.skill-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #222;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4facfe, #87ceeb);
+  border-radius: 4px;
+}
+
+/* ─── Fan Cards ─── */
+.fan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+}
+
+.fan-stage {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fan-card-wrapper {
+  position: absolute;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+.fan-card {
+  width: 240px;
+  height: 340px;
+  border-radius: 16px;
+  position: relative;
+  transform-style: preserve-3d;
+  box-shadow: 0 8px 30px rgba(79, 172, 254, 0.08);
+  transition: box-shadow 0.3s;
+}
+
+.fan-card:hover {
+  box-shadow: 0 12px 40px rgba(79, 172, 254, 0.18);
+}
+
+.fan-card-front,
+.fan-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.fan-card-front {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.fan-card-back {
+  transform: rotateY(180deg);
+  overflow-y: auto;
+  gap: 10px;
+}
+
+.fan-card-back h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.fan-card-back ul {
+  list-style: none;
+  padding: 0;
+}
+
+.fan-card-back li {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fan-card-back li:last-child {
+  border-bottom: none;
+}
+
+.fan-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.fan-card-front h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.fan-role {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.fan-period {
+  font-size: 0.75rem;
+  opacity: 0.6;
+  margin-bottom: 8px;
+}
+
+.fan-summary {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.fan-hint {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  margin-top: 16px;
+}
+
+/* Education card */
+.fan-education {
+  width: 100%;
+  max-width: 600px;
+}
+
+.edu-card {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.edu-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #87ceeb;
+}
+
+.edu-period {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.edu-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.edu-card li {
+  font-size: 0.9rem;
+  color: #bbb;
+  padding: 5px 0 5px 20px;
+  position: relative;
+}
+
+.edu-card li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: #4facfe;
+}
+
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  color: #555;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: 2.2rem;
+  }
+
+  .section {
+    padding: 60px 24px;
+  }
+
+  .fan-stage {
+    height: 400px;
+  }
+
+  .fan-card {
+    width: 180px;
+    height: 270px;
+  }
+
+  .fan-card-front,
+  .fan-card-back {
+    padding: 16px;
+  }
+
+  .fan-card-front h3 {
+    font-size: 1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
