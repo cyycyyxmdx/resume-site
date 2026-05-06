@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
-const cardColors = ["#002fa7", "#1a4fc3", "#3366d6", "#4d7de8", "#6695f5"];
+const cardColors = ["#e85d26", "#ff6b35", "#ff8c42", "#ff9f4d", "#ffb347"];
 
 export default function FanCards({ experiences }) {
   const [selected, setSelected] = useState(null);
@@ -34,6 +34,7 @@ export default function FanCards({ experiences }) {
               key={i}
               className="fan-card-wrapper"
               style={{ zIndex: isSelected ? 100 : total - i }}
+              initial={{ opacity: 0, y: 40, rotate: angle }}
               animate={{
                 x,
                 y,
@@ -41,7 +42,14 @@ export default function FanCards({ experiences }) {
                 opacity: selected === null ? 1 : isSelected ? 1 : 0.35,
                 scale: isSelected ? 1.08 : 1,
               }}
-              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 20,
+                delay: i * 0.15,
+              }}
               onClick={() => handleSelect(i)}
             >
               <motion.div
@@ -50,7 +58,6 @@ export default function FanCards({ experiences }) {
                 transition={{ duration: 0.6, type: "spring" }}
                 style={{ background: cardColors[i % cardColors.length] }}
               >
-                {/* Front */}
                 <div className="fan-card-front">
                   <span className="fan-badge">{exp.type}</span>
                   <h3>{exp.company}</h3>
@@ -60,7 +67,6 @@ export default function FanCards({ experiences }) {
                   <span className="fan-hint">点击翻转查看详情</span>
                 </div>
 
-                {/* Back */}
                 <div className="fan-card-back">
                   <h3>{exp.company} - 详情</h3>
                   <ul>
@@ -75,7 +81,13 @@ export default function FanCards({ experiences }) {
         })}
       </div>
 
-      <div className="fan-education">
+      <motion.div
+        className="fan-education"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+      >
         <h2 className="section-title">教育背景</h2>
         <div className="edu-card">
           <h3>厦门大学 — 经济学</h3>
@@ -86,7 +98,7 @@ export default function FanCards({ experiences }) {
             <li>志愿者协会会长</li>
           </ul>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

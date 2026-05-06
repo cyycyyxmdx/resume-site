@@ -10,8 +10,8 @@ html {
 
 body {
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  background: #0d0d0d;
-  color: #e0e0e0;
+  background: linear-gradient(135deg, #fff6ed 0%, #ffede0 30%, #fff1e6 60%, #ffd6b0 100%);
+  color: #3d2b1f;
   line-height: 1.6;
 }
 
@@ -20,20 +20,46 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── Floating Particles Background ─── */
+.particles-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 140, 0, 0.12);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(720deg) scale(1);
+    opacity: 0;
+  }
+}
+
 /* ─── Hero ─── */
 .hero-section {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: #000;
-}
-
-.hero-sphere-container {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 50%, #e85d26 100%);
 }
 
 .hero-overlay {
@@ -52,16 +78,16 @@ body {
   font-size: 4rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #87ceeb, #4facfe);
+  background: linear-gradient(135deg, #fff, #ffe0b2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 60px rgba(79, 172, 254, 0.25);
+  text-shadow: 0 0 60px rgba(255, 255, 255, 0.3);
 }
 
 .hero-title {
   font-size: 1.4rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.85);
   margin-top: 12px;
   font-weight: 400;
   letter-spacing: 2px;
@@ -69,16 +95,35 @@ body {
 
 .hero-intro {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.7);
   margin-top: 16px;
   max-width: 500px;
   line-height: 1.8;
 }
 
+/* ─── Floating wave decoration ─── */
+.wave-divider {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  margin-top: -2px;
+  overflow: hidden;
+}
+
+.wave-divider svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 /* ─── Sections ─── */
 .section {
   padding: 80px 10%;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 140, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 .section-title {
@@ -87,7 +132,7 @@ body {
   margin-bottom: 40px;
   position: relative;
   display: inline-block;
-  color: #87ceeb;
+  color: #e85d26;
 }
 
 .section-title::after {
@@ -97,7 +142,7 @@ body {
   left: 0;
   width: 40px;
   height: 3px;
-  background: #4facfe;
+  background: linear-gradient(90deg, #ff8c42, #e85d26);
   border-radius: 2px;
 }
 
@@ -118,21 +163,39 @@ body {
   min-width: 100px;
   font-weight: 500;
   font-size: 0.95rem;
-  color: #ccc;
+  color: #5a3d2b;
 }
 
 .skill-bar-bg {
   flex: 1;
-  height: 8px;
-  background: #222;
-  border-radius: 4px;
+  height: 10px;
+  background: rgba(255, 140, 0, 0.15);
+  border-radius: 5px;
   overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .skill-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4facfe, #87ceeb);
-  border-radius: 4px;
+  background: linear-gradient(90deg, #ffb347, #ff8c42, #e85d26);
+  border-radius: 5px;
+  position: relative;
+}
+
+.skill-bar-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 /* ─── Fan Cards ─── */
@@ -164,12 +227,12 @@ body {
   border-radius: 16px;
   position: relative;
   transform-style: preserve-3d;
-  box-shadow: 0 8px 30px rgba(79, 172, 254, 0.08);
+  box-shadow: 0 8px 30px rgba(232, 93, 38, 0.15);
   transition: box-shadow 0.3s;
 }
 
 .fan-card:hover {
-  box-shadow: 0 12px 40px rgba(79, 172, 254, 0.18);
+  box-shadow: 0 12px 40px rgba(232, 93, 38, 0.3);
 }
 
 .fan-card-front,
@@ -182,13 +245,6 @@ body {
   display: flex;
   flex-direction: column;
   color: #fff;
-}
-
-.fan-card-front {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 8px;
 }
 
 .fan-card-back {
@@ -212,7 +268,7 @@ body {
   font-size: 0.8rem;
   line-height: 1.6;
   padding: 4px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .fan-card-back li:last-child {
@@ -221,7 +277,7 @@ body {
 
 .fan-badge {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(4px);
   font-size: 0.7rem;
   font-weight: 600;
@@ -238,24 +294,24 @@ body {
 
 .fan-role {
   font-size: 0.85rem;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .fan-period {
   font-size: 0.75rem;
-  opacity: 0.6;
+  opacity: 0.7;
   margin-bottom: 8px;
 }
 
 .fan-summary {
   font-size: 0.8rem;
   line-height: 1.5;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .fan-hint {
   font-size: 0.7rem;
-  opacity: 0.5;
+  opacity: 0.6;
   margin-top: 16px;
 }
 
@@ -266,22 +322,23 @@ body {
 }
 
 .edu-card {
-  background: #1a1a1a;
+  background: #fff;
   border-radius: 16px;
   padding: 28px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(232, 93, 38, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.1);
 }
 
 .edu-card h3 {
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 6px;
-  color: #87ceeb;
+  color: #e85d26;
 }
 
 .edu-period {
   font-size: 0.9rem;
-  color: #777;
+  color: #8a6b58;
   margin-bottom: 12px;
 }
 
@@ -292,7 +349,7 @@ body {
 
 .edu-card li {
   font-size: 0.9rem;
-  color: #bbb;
+  color: #5a3d2b;
   padding: 5px 0 5px 20px;
   position: relative;
 }
@@ -301,15 +358,17 @@ body {
   content: "▸";
   position: absolute;
   left: 0;
-  color: #4facfe;
+  color: #ff8c42;
 }
 
 .footer {
   text-align: center;
   padding: 40px 0;
-  color: #555;
+  color: #8a6b58;
   font-size: 0.85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 140, 0, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 /* ─── Responsive ─── */

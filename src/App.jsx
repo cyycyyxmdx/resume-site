@@ -1,5 +1,6 @@
 import HeroSphere from "./components/HeroSphere";
 import FanCards from "./components/FanCards";
+import FloatingParticles from "./components/FloatingParticles";
 import { resumeData } from "./data";
 import "./App.css";
 import { motion } from "motion/react";
@@ -9,6 +10,8 @@ function App() {
 
   return (
     <div className="app">
+      <FloatingParticles />
+
       <section className="hero-section" id="home">
         <HeroSphere />
         <div className="hero-overlay">
@@ -41,14 +44,46 @@ function App() {
               </span>
             ))}
           </motion.p>
+          <motion.div
+            className="hero-scroll-hint"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 8, 0] }}
+            transition={{
+              opacity: { delay: 1.5, duration: 0.6 },
+              y: { delay: 1.5, duration: 2, repeat: Infinity, ease: "easeInOut" },
+            }}
+            style={{
+              marginTop: 40,
+              color: "rgba(255,255,255,0.6)",
+              fontSize: "0.85rem",
+              letterSpacing: 2,
+            }}
+          >
+            ↓ 向下滚动
+          </motion.div>
         </div>
       </section>
 
       <section className="section" id="skills">
-        <h2 className="section-title">专业技能</h2>
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          专业技能
+        </motion.h2>
         <div className="skills-grid">
-          {resumeData.skills.map((s) => (
-            <div className="skill-item" key={s.name}>
+          {resumeData.skills.map((s, i) => (
+            <motion.div
+              className="skill-item"
+              key={s.name}
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            >
               <span className="skill-name">{s.name}</span>
               <div className="skill-bar-bg">
                 <motion.div
@@ -56,16 +91,24 @@ function App() {
                   initial={{ width: 0 }}
                   whileInView={{ width: `${s.level}%` }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, ease: "easeOut" }}
+                  transition={{ duration: 1.2, ease: "easeOut", delay: i * 0.1 }}
                 />
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
 
       <section className="section" id="experience">
-        <h2 className="section-title">过往经历</h2>
+        <motion.h2
+          className="section-title"
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          过往经历
+        </motion.h2>
         <FanCards experiences={experience} />
       </section>
 
